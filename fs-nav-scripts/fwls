@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# For cd in this script, this must be run like: # . fwls
+
+cd -
+ls -a

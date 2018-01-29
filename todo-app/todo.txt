@@ -1,0 +1,12 @@
+# This should be able to list, list, add and remove todos like:
+# 1. 1st todo
+# 2. 2nd todo
+# then manipulate line numbers.
+
+# Using Bash:
+# you can start A list by using the followimg command. 
+# This prints 'thing-to-do' to a new file 'todo.txt'. 
+echo thing-to-do > todo.txt
+
+# Using '>' again will reset the file. To add(append) things:
+echo thing-to-do >> todo.txt
