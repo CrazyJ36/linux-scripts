@@ -1,5 +1,5 @@
 #!/bin/bash
-
+#This is specefic to my Toshiba Laptop
 # Welcome
 echo "Welcome, lets turn things on!"
 
