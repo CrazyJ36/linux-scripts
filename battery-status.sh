@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# by CrazyJ36
 # Probably not for chroot stuff like Linux in Android
 # Change BAT1 to whichever you current systems battery name is.
 
