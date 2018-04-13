@@ -1,2 +1,2 @@
 #!/bin/bash
-sshpass -p crazyj3463Tj@ ssh -o StrictHostKeyChecking=no thomas@52.179.98.127
+sshpass -p crazyj3463Tj@ ssh -o StrictHostKeyChecking=no thomas@13.82.27.219
