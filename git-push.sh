@@ -16,19 +16,19 @@ pwd
 printf "with message:\n$message\n"
 read -p "Continue? (y,n)" x
 if [ "$x" == "y" ]
-then
-git add .
-git commit -m "$message"
-printf "Pushing to your remote repo.\n"
-git push
-printf "Done\n"
-exit
+ then
+  git add .
+  git commit -m "$message"
+  printf "Pushing to your remote repo.\n"
+  git push
+  printf "Done\n"
+  exit
 else
-printf "Cancelled\n"
+ printf "Cancelled\n"
 fi
 }
 
 function help {
-  printf 'This script can make pushing your local\ngit, bitbucket, etc. changes easy by running it in\nthe desired git directory and entering\nyour message as an argument.\n'
+ printf 'This script can make pushing your local\ngit, bitbucket, etc. changes easy by running it in\nthe desired git directory and entering\nyour message as an argument.\n'
 }
 main "$@"
