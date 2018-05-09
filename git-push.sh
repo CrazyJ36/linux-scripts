@@ -9,7 +9,7 @@ else
 printf "Commiting changes in:\n"
 pwd
 git add .
-printf "with message:\n$message"
+printf "with message:\n$message\n"
 git commit -m "$message"
 printf "Pushing to your remote repo.\n"
 git push
