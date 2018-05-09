@@ -6,14 +6,14 @@ then
 help
 exit
 else
-echo "Commiting changes in:\n"
+printf "Commiting changes in:\n"
 pwd
 git add .
-echo "with message:\n$message"
+printf "with message:\n$message"
 git commit -m "$message"
-echo "Pushing to your remote repo"
+printf "Pushing to your remote repo.\n"
 git push
-echo "done"
+printf "done\n"
 exit
 fi
 }
