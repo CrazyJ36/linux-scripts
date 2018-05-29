@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# maybe grep output of git status to detect when changed
+# print only changed.
+# this method should show when git pull is needed as well.
+
 (cd ~/development/android && printf "\n#ANDROID:";git status&&\
 cd ~/development/bash && printf "\n#BASH:";git status&&\
 cd ~/development/bat && printf "\n#BAT:";git status&&\
