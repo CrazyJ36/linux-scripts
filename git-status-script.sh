@@ -1,15 +1,15 @@
 #!/bin/bash
 
-(cd ~/development/android && printf "\nANDROID:";git status&&\
-cd ~/development/bash && printf "\nBASH:";git status&&\
-cd ~/development/bat && printf "\bBAT:";git status&&\
-cd ~/development/c && printf "\nC:";git status&&\
-cd ~/development/cpp && printf "\nCPP:";git status&&\
-cd ~/development/configs && printf "\nCONFIG:";git status&\
-cd ~/development/cs && printf "\nCS:";git status&&\
-cd ~/development/docs && printf "\nDOCS:";git status&&\
-cd ~/development/gitbook && printf "\nGITBOOK:";git status&&\
-cd ~/development/java && printf "\nJAVA:";git status&&\
-cd ~/development/kotlin && printf "\nKOTLIN:";git status&&\
-cd ~/development/python&& printf "\nPYTHON:";git status&&\
-cd ~/development/termux && printf "\nTERMUX:";git status)
+(cd ~/development/android && printf "\n#ANDROID:";git status&&\
+cd ~/development/bash && printf "\n#BASH:";git status&&\
+cd ~/development/bat && printf "\n#BAT:";git status&&\
+cd ~/development/c && printf "\n#C:";git status&&\
+cd ~/development/cpp && printf "\n#CPP:";git status&&\
+cd ~/development/configs && printf "\n#CONFIG:";git status&\
+cd ~/development/cs && printf "\n#CS:";git status&&\
+cd ~/development/docs && printf "\n#DOCS:";git status&&\
+cd ~/development/gitbook && printf "\n#GITBOOK:";git status&&\
+cd ~/development/java && printf "\n#JAVA:";git status&&\
+cd ~/development/kotlin && printf "\n#KOTLIN:";git status&&\
+cd ~/development/python&& printf "\n#PYTHON:";git status&&\
+cd ~/development/termux && printf "\n#TERMUX:";git status)
