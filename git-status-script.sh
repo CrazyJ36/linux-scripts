@@ -13,6 +13,7 @@ cd ~/development/configs && printf "\n#CONFIG:";git status&&\
 cd ~/development/cs && printf "\n#CS:";git status&&\
 cd ~/development/docs && printf "\n#DOCS:";git status&&\
 cd ~/development/gitbook && printf "\n#GITBOOK:";git status&&\
+cd ~/development/html && printf "\n#HTML:";git status&&\
 cd ~/development/java && printf "\n#JAVA:";git status&&\
 cd ~/development/kotlin && printf "\n#KOTLIN:";git status&&\
 cd ~/development/python&& printf "\n#PYTHON:";git status&&\
