@@ -14,7 +14,7 @@ function pushOrNot {
 printf "Commiting changes in:\n"
 pwd
 printf "with message:\n$message\n"
-read -p "Continue? (y,n)" x
+read -p "Continue? (y,n) " x
 if [ "$x" == "y" ]
  then
   git add .
