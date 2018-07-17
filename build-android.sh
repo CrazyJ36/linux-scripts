@@ -32,7 +32,7 @@ javac -source 1.7 -target 1.7 -bootclasspath "${JAVA_HOME}/jre/lib/rt.jar" \
 
 "${BUILD_TOOLS}/dx" --dex --output=$workdir/build/apk/classes.dex $workdir/build/obj/
 
-"${BUILD_TOOLS}/aapt" package -f -M AndroidManifest.xml -S $workdir/res/ \
+"${BUILD_TOOLS}/aapt" package -f -M $workdir/AndroidManifest.xml -S $workdir/res/ \
     -I "${PLATFORM}/android.jar" \
     -F $workdir/build/$appname.unsigned.apk $workdir/build/apk/
 
