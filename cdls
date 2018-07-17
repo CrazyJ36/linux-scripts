@@ -4,12 +4,14 @@
 #
 # $ . cdls directory
 #
+# As in 'source' the file.
 # This is due to using 'cd' in A script which
 # creates A new bash shell.
 
 if [ -z "$1" ]
  then
   printf "Failed: Directory name must be entered as runtime argument.\n"
+  exit
 else
  cd $1
  ls

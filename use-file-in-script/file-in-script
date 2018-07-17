@@ -1,3 +1,0 @@
-#!/data/data/com.termux/files/usr/bin/bash
-file=$1
-cat $file
