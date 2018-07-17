@@ -3,11 +3,9 @@
 # Edited to suit from http://www.hanshq.net/command-line-android.html
 
 # Instructions: this expects $JAVA_HOME to be set and the JDK tools to be in $PATH.
-# Move this file to the project directory where AndroidManifest.xml/java/res folders are.
-# Run from there.
-# appname (second argument) should be the same as in ./java/com/company/NAME
+# appname (second argument) should be the same as in ./java/com/company/name
 
-printf "Run this program as: 'build-script.sh SourceDir AppName KeyStorePass'...\n"
+printf "Remember this script can not compile multiple java activity files!\nRun this program as: 'build-script.sh SourceDir AppName KeyStorePass'...\n"
 read -p "Continue? Options:[y,n] " response
 if [[ $response == "n" ]]; then
   printf "Try again.\n"
@@ -23,6 +21,7 @@ BUILD_TOOLS="${SDK}/build-tools-21"
 PLATFORM="${SDK}/android-9"
 
 mkdir -p $workdir/build/gen $workdir/build/obj $workdir/build/apk
+
 "${BUILD_TOOLS}/aapt" package -f -m -J $workdir/build/gen/ -S $workdir/res \
     -M $workdir/AndroidManifest.xml -I "${PLATFORM}/android.jar"
 
