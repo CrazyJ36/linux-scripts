@@ -23,8 +23,8 @@ BUILD_TOOLS="${SDK}/build-tools-21"
 PLATFORM="${SDK}/android-9"
 
 mkdir -p $workdir/build/gen $workdir/build/obj $workdir/build/apk
-"${BUILD_TOOLS}/aapt" package -f -m -J $workdir/build/gen/ -S res \
-    -M AndroidManifest.xml -I "${PLATFORM}/android.jar"
+"${BUILD_TOOLS}/aapt" package -f -m -J $workdir/build/gen/ -S $workdir/res \
+    -M $workdir/AndroidManifest.xml -I "${PLATFORM}/android.jar"
 
 javac -source 1.7 -target 1.7 -bootclasspath "${JAVA_HOME}/jre/lib/rt.jar" \
     -classpath "${PLATFORM}/android.jar" -d $workdir/build/obj \
