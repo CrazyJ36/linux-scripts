@@ -46,9 +46,6 @@ javac -source 1.7 -target 1.7 -bootclasspath "${JAVA_HOME}/jre/lib/rt.jar" \
 
 "${SDK}/platform-tools-21/adb" shell am start -n com.crazyj36.$appname/.MainActivity
 
-exit
-exit
-
 else
   printf "Invalid response. Try Again.\n"
   exit
