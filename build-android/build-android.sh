@@ -5,7 +5,7 @@
 # Instructions: this expects $JAVA_HOME to be set and the JDK tools to be in $PATH.
 # appname (second argument) should be the same as in ./java/com/crazyj36/name
 
-printf "remember this script can not compile multiple java activity files yet.\n\nRun this program as:\nbuild-android2.sh SourceDir AppName KeyStorePass\n\n"
+printf "remember this script can not compile multiple java activity files yet.\n\nRun this program as:\nbuild-android.sh SourceDir AppName KeyStorePass\n\n"
 
 read -p "Continue? Options:[y,n] " response
 if [[ $response == "n" ]]; then
@@ -22,7 +22,7 @@ elif [[ $response == "y" ]]; then
 
   SDK="${HOME}/development/android/cli-build/86/android-sdk-linux_x86"
   BUILD_TOOLS="${SDK}/build-tools-21"
-  PLATFORM="${SDK}/android-2"
+  PLATFORM="${SDK}/android-9"
 
   mkdir -p $workdir/build/gen $workdir/build/obj $workdir/build/apk
   printf "\nbuild directories created...\n"
