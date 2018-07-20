@@ -1,6 +1,7 @@
 #!/bin/bash
 
-# Edited to suit from http://www.hanshq.net/command-line-android.html
+# File edited to suit by CrazyJ36
+# using method from http://www.hanshq.net/command-line-android.html
 
 # Instructions: this expects $JAVA_HOME to be set and the JDK tools to be in $PATH.
 # appname (second argument) should be the same as in ./java/com/crazyj36/name
