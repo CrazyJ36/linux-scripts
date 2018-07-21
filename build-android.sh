@@ -6,16 +6,12 @@
 # Instructions: this expects $JAVA_HOME to be set and the JDK tools to be in $PATH.
 # appname (second argument) should be the same as in ./java/com/crazyj36/name
 
-printf "\nRun this program as:\nbuild-android.sh SourceDir AppName KeyStorePass\n\n"
+printf "\nRun this program as:\nbuild-android.sh SourceDir AppName KeyStorePass\n"
 
-read -p "Continue? Options:[y,n] " response
-if [[ $response == "n" ]]; then
-  printf "Cancelled.\n"
-  exit
-elif [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ]; then
+if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ]; then
   printf "Wrong number of arguments.\n"
   exit
-elif [[ $response == "y" ]]; then
+else
 
   workdir=$1
   appname=$2
