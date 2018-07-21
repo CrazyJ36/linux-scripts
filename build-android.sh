@@ -6,7 +6,7 @@
 # Instructions: this expects $JAVA_HOME to be set and the JDK tools to be in $PATH.
 # appname (second argument) should be the same as in ./java/com/crazyj36/name
 
-printf "remember this script can not compile multiple java activity files yet.\n\nRun this program as:\nbuild-android.sh SourceDir AppName KeyStorePass\n\n"
+printf "\nRun this program as:\nbuild-android.sh SourceDir AppName KeyStorePass\n\n"
 
 read -p "Continue? Options:[y,n] " response
 if [[ $response == "n" ]]; then
@@ -34,7 +34,7 @@ elif [[ $response == "y" ]]; then
 
   javac -source 1.7 -target 1.7 -bootclasspath "${JAVA_HOME}/jre/lib/rt.jar" \
   -classpath "${PLATFORM}/android.jar" -d $workdir/build/obj \
-  $workdir/build/gen/com/crazyj36/$appname/R.java $workdir/java/com/crazyj36/$appname/MainActivity.java
+  $workdir/build/gen/com/crazyj36/$appname/R.java $workdir/java/com/crazyj36/$appname/*.java
 
   if [ ! $? == 0 ]; then
     printf "Couldn't build java source files.\n"
