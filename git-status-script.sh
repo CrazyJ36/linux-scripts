@@ -17,4 +17,5 @@ cd ~/development/html && printf "\n#HTML:";git status&&\
 cd ~/development/java && printf "\n#JAVA:";git status&&\
 cd ~/development/kotlin && printf "\n#KOTLIN:";git status&&\
 cd ~/development/python&& printf "\n#PYTHON:";git status&&\
-cd ~/development/termux && printf "\n#TERMUX:";git status)
+cd ~/development/termux && printf "\n#TERMUX:";git status&&\
+cd ~/development/rom && printf "\n#ROM: ";git status)
