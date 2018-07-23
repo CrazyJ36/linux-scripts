@@ -54,6 +54,8 @@ else
     $workdir/build/$appname.aligned.apk
     printf "apk signed...\n"
 
+    rm $workdir/build/$appname.unsigned.apk $workdir/build/$appname.aligned.apk
+
     "${SDK}/platform-tools-21/adb" install -r $workdir/build/$appname.apk
     printf "apk installed...\n"
 
