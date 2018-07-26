@@ -43,28 +43,29 @@ else
     printf "classes.dex built...\n"
 
     "${BUILD_TOOLS}/aapt" package -f -M $workdir/AndroidManifest.xml -S $workdir/res/ -I "${PLATFORM}/android.jar" \
-    -F $workdir/build/$appname.packaged.apk $workdir/build/apk/
+    -F $workdir/build/$appname-packaged.apk $workdir/build/apk/
     printf "aapt success...\n"
 
-    "${BUILD_TOOLS}/zipalign" -f 4 $workdir/build/$appname.packaged.apk $workdir/build/$appname.aligned.apk
-    printf "zipalign success...\n"
-
     ## apksigner should be available directly in newer sdks. If you have it use here "${BUILD_TOOLS}/apksigner" instead of "apksigner"
-    #"apksigner" sign --ks $HOME/development/android/keystore/keystore.jks \
-    #--ks-key-alias CrazyJ36DevKey --ks-pass pass:$mpass --out $workdir/build/$appname.apk \
-    #$workdir/build/$appname.aligned.apk
+    apksigner sign --v1-signing-enabled true --v2-signing-enabled false \
+    --ks $HOME/development/android/devkey/keystore.jks \
+    --ks-key-alias CrazyJ36DevKey --ks-pass pass:$mpass --key-pass pass:$mpass \
+    --out $workdir/build/$appname-signed.apk $workdir/build/$appname-packaged.apk
 
-    jarsigner -keystore $HOME/development/android/devkey/keystore.jks \
-    -storepass $mpass -keypass $mpass $workdir/build/$appname.aligned.apk CrazyJ36DevKey
+    #jarsigner -keystore $HOME/development/android/devkey/keystore.jks \
+    #-storepass $mpass -keypass $mpass $workdir/build/$appname.aligned.apk CrazyJ36DevKey
     printf "apk signed...\n"
 
-    "${SDK}/platform-tools-21/adb" install -r $workdir/build/$appname.aligned.apk
+    #"${BUILD_TOOLS}/zipalign"
+    zipalign -f 4 $workdir/build/$appname-signed.apk $workdir/build/$appname.apk
+    printf "zipalign success...\n"
+
+    "${SDK}/platform-tools-21/adb" install -r $workdir/build/$appname.apk
     printf "apk installed...\n"
 
-    "${SDK}/platform-tools-21/adb" shell am start -n com.crazyj36.$appname/.MainActivity
+    "${SDK}/platform-tools-21/adb"  shell am start -n com.crazyj36.$appname/.MainActivity
 
-    mv $workdir/build/$appname.aligned.apk $workdir/build/$appname.apk
-    rm $workdir/build/$appname.packaged.apk
+    rm $workdir/build/$appname-packaged.apk $workdir/build/$appname-signed.apk
 
   fi
 fi
