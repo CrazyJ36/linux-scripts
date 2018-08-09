@@ -29,6 +29,6 @@ fi
 }
 
 function help {
- printf 'This script can make pushing your local\ngit, bitbucket, etc. changes easy by running it in\nthe desired git directory and entering\nyour message as an argument.\n'
+ printf "Usage: git-push.sh 'commit message'\nThis script can make pushing your local git changes\neasy by running it in the desired git directory\nand entering your message as an argument.\n"
 }
 main "$@"
