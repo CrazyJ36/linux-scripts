@@ -1,2 +1,2 @@
 #!/bin/bash
-sshpass -p 232130 ssh thomas@192.168.0.13
+sshpass -p 232130 ssh thomas@192.168.0.9
