@@ -23,9 +23,9 @@ else
   mpass=$3
 
   SDK="${HOME}/development/android/cli-build/86/sdk-21"
-  BUILD_TOOLS="${SDK}/build-tools-21"
-  PLATFORM="${SDK}/android-p"
-  PLATFORM_TOOLS="{SDK}/platform-tools-21"
+  BUILD_TOOLS="${SDK}/build-tools"
+  PLATFORM="${SDK}/platforms/android-p"
+  PLATFORM_TOOLS="${SDK}/platform-tools"
 
   mkdir -p $workdir/build/gen $workdir/build/obj $workdir/build/apk
   printf "\nbuild directories created...\n"
@@ -65,10 +65,10 @@ else
     zipalign -f 4 $workdir/build/$appname-signed.apk $workdir/build/$appname.apk
     printf "zipalign success...\n"
 
-    "${SDK}/platform-tools-21/adb" install -r $workdir/build/$appname.apk
+    "${PLATFORM_TOOLS}/adb" install -r $workdir/build/$appname.apk
     printf "apk installed...\n"
 
-    "${SDK}/platform-tools-21/adb"  shell am start -n com.crazyj36.$appname/.MainActivity
+    "${PLATFORM_TOOLS}/adb"  shell am start -n com.crazyj36.$appname/.MainActivity
 
     rm $workdir/build/$appname-packaged.apk $workdir/build/$appname-signed.apk
 
