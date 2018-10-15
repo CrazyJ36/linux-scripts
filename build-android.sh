@@ -6,6 +6,11 @@
 # Instructions: this expects $JAVA_HOME to be set and the JDK tools to be in $PATH.
 # appname (second argument) should be the same as in ./java/com/crazyj36/name
 
+# adding libs like support libraries seems possible after "javac -cp ${PLATFORM}/android.jar:${PLATFORM}/android-support-v4.jar"
+# and "aapt -j ${PATH}/to/android-support-v4.jar"
+# But this caused crash in app as 'NoClassDefError' for this lib.
+# Maybe this is just because I obtain the lib file awkwardly.
+
 printf "\nRun this program as:\nbuild-android.sh SourceDir AppName KeyStorePass\n"
 
 if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ]; then
