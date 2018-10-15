@@ -11,6 +11,8 @@
 # But this caused crash in app as 'NoClassDefError' for this lib.
 # Maybe this is just because I obtain the lib file awkwardly.
 
+# Ideas: catch any problems before script gets to "success.."
+
 printf "\nRun this program as:\nbuild-android.sh SourceDir AppName KeyStorePass\n"
 
 if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ]; then
