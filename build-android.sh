@@ -72,6 +72,6 @@ else
     "${PLATFORM_TOOLS}/adb"  shell am start -n com.crazyj36.$appname/.MainActivity
 
     rm $workdir/build/$appname-packaged.apk $workdir/build/$appname-signed.apk
-
+    rm -rf $workdir/build/apk $workdir/build/gen $workdir/build/obj
   fi
 fi
