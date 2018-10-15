@@ -61,8 +61,7 @@ else
     #-storepass $mpass -keypass $mpass $workdir/build/$appname.aligned.apk CrazyJ36DevKey
     printf "apk signed...\n"
 
-    #"${BUILD_TOOLS}/zipalign"
-    zipalign -f 4 $workdir/build/$appname-signed.apk $workdir/build/$appname.apk
+    "${BUILD_TOOLS}/zipalign" -f 4 $workdir/build/$appname-signed.apk $workdir/build/$appname.apk
     printf "zipalign success...\n"
 
     "${PLATFORM_TOOLS}/adb" install -r $workdir/build/$appname.apk
