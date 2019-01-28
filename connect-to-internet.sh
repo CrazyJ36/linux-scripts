@@ -20,7 +20,7 @@ ip link show wlp4s0
 read -p "Press Enter to continue"
 
 # We could scan networks here and start A new connection like this:
-# $ 'iw wlp4s0 scan' shows SSID and RSN(wpa2) needed for:
+# $ 'sudo iw wlp4s0 scan' shows SSID and RSN(wpa2) needed for:
 # $ 'wpa_passphrase <SSID> >> /etc/wpa_supplicant.conf'
 # $ enter wifi password here after last command, then enter again
 # check with 'cat /etc/wpa_supplicant.conf'
