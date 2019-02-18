@@ -24,7 +24,7 @@ else
   appname=$2
   mpass=$3
 
-  SDK="${HOME}/development/android/cli-build/86/sdk-21"
+  SDK="${HOME}/development/android/cli-build/aapt-build/sdk-21"
   BUILD_TOOLS="${SDK}/build-tools"
   PLATFORM="${SDK}/platforms/android-p"
   PLATFORM_TOOLS="${SDK}/platform-tools"
