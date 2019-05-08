@@ -5,6 +5,7 @@
 # this script shows when git pull or push is needed.
 
 (cd ~/development/android && printf "\n#ANDROID:";git status&&\
+cd ~/development/assembly && printf "\n#ASSEMBLY:";git status&&\
 cd ~/development/bash && printf "\n#BASH:";git status&&\
 cd ~/development/bat && printf "\n#BAT:";git status&&\
 cd ~/development/c && printf "\n#C:";git status&&\
