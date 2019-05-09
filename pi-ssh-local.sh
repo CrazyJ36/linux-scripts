@@ -1,2 +1,2 @@
 #!/bin/bash
-sshpass -p 232130tj pi@192.168.0.14
+sshpass -p 232130tj ssh -p 23456 pi@192.168.0.14
