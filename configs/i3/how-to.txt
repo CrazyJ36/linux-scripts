@@ -1,6 +1,0 @@
-# my config:
-i3status.conf goes in /etc/, right in the /etc directory
-
-# original backup
-i3status.bak is A copy of the original, unmodified .conf file.
-I3 newly installing, or reinstalling i3, don't use this backup, delete it.

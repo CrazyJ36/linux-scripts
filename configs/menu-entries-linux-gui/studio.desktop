@@ -1,7 +1,0 @@
-[Desktop Entry]
-Type=Application
-Exec=studio.sh
-Name=Android Studio
-Comment=Launch Android Studio IDE
-Categories=Development
-Icon=~/Pictures/Icons/StudioIcon.jpeg

@@ -1,8 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=Jshell interactive java 
-Icon=/home/thomas/Pictures/Icons/JavaIcon.jpeg
-Exec=x-terminal-emulator -e /usr/bin/jshell
-Comment=Run and test java statements interactively
-Categories=Development
-Path=~/development
