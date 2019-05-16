@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Exec=x-terminal-emulator -e pianobar
+Path=~/Music
+Name=Painobar CLI
+Comment=Start Pianobar radio in terminal
+Icon=/home/thomas/Pictures/Icons/PandoraIcon.jpeg
+Categories=AudioVideo
