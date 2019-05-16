@@ -8,7 +8,7 @@ cat junk.txt
 #normally variables can't be used in seds' single quotes
 # eg:
 ## sed -i 's/$word/ /g' text
-# would not work as the '$word' variable is swallowed into a strin, not available to sed.
+# would not work as the '$word' variable is swallowed into a string, not available to sed.
 
 # use double quotes around a section of regex to include variables:
 sed -i "s/$word/ /g" $file # this function help: sed -i 's/string-to-replace/replacement-string/g'
