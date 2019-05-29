@@ -24,5 +24,5 @@ around all of your commented-out text.
 #####
 
 
-printf "done."
+printf "%s\n" "done."
 exit
