@@ -8,8 +8,7 @@
 
 # adding libs like support libraries seems possible after "javac -cp ${PLATFORM}/android.jar:${PLATFORM}/android-support-v4.jar"
 # and "aapt -j ${PATH}/to/android-support-v4.jar"
-# But this caused crash in app as 'NoClassDefError' for this lib.
-# Maybe this is just because I obtain the lib file awkwardly.
+# But this caused crash in app as 'NoClassDefError' for this lib. My error, probably didn't have the lib downloaded.
 
 # Ideas: catch any problems before script gets to "success.."
 
@@ -24,9 +23,10 @@ else
   appname=$2
   mpass=$3
 
-  SDK="${HOME}/development/android/cli-build/aapt-build/sdk-21"
+  jks_dir="$HOME/downloads/keystore.jks"
+  SDK="${HOME}/development/android/cli-build/aapt-build/sdk"
   BUILD_TOOLS="${SDK}/build-tools"
-  PLATFORM="${SDK}/platforms/android-p"
+  PLATFORM="${SDK}/platforms/"
   PLATFORM_TOOLS="${SDK}/platform-tools"
 
   mkdir -p $workdir/build/gen $workdir/build/obj $workdir/build/apk
@@ -55,7 +55,7 @@ else
 
     ## apksigner should be available directly in newer sdks. If you have it use here "${BUILD_TOOLS}/apksigner" instead of "apksigner"
     apksigner sign --v1-signing-enabled true --v2-signing-enabled false \
-    --ks $HOME/development/android/devkey/keystore.jks \
+    --ks $jks_dir \
     --ks-key-alias CrazyJ36DevKey --ks-pass pass:$mpass --key-pass pass:$mpass \
     --out $workdir/build/$appname-signed.apk $workdir/build/$appname-packaged.apk
 
