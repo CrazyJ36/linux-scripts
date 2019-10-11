@@ -2,4 +2,4 @@
 
 # This simply opens firefox as A file browser.
 
-firefox file:///
+firefox file:/// &
