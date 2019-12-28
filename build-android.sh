@@ -70,8 +70,13 @@ else
     printf "apk installed...\n"
 
     "${PLATFORM_TOOLS}/adb"  shell am start -n com.crazyj36.$appname/.MainActivity
+    printf "app started on device\n"
 
+    printf "cleaning build directories\n"
     rm $workdir/build/$appname-packaged.apk $workdir/build/$appname-signed.apk
+    rm -rf $workdir/build/apk/ $workdir/build/obj/ $workdir/build/gen/
+
+    printf "done\n"
   fi
 
 fi
