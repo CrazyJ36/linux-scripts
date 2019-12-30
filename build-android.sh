@@ -37,7 +37,7 @@ else
   printf "aapt success...\n"
 
   javac -source 1.7 -target 1.7 -bootclasspath "${JAVA_HOME}/jre/lib/rt.jar" \
-  -classpath "${PLATFORM}/android.jar" -d $workdir/build/obj \
+  -classpath "${PLATFORM}/android.jar" -Xlint:all -d $workdir/build/obj \
   $workdir/build/gen/com/crazyj36/$appname/R.java $workdir/java/com/crazyj36/$appname/*.java
 
   if [ ! $? == 0 ]; then
