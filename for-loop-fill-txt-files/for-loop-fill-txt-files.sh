@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# One-liner makeing A number of files with their own content.
+# Makes A number of files with their own content.
 
-# VARIABLE is initialized after for and is then available to the loop.
+# variable is initialized after for and is then available to the loop.
 
-# act on i up to 5 times
-for i in {1..5};
+# for variable in sequence(seq) of 1 to 5;
+for i in $(seq 1 5);
 do echo "content $i" > note$i.txt;
 done;
 
