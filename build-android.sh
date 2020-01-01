@@ -3,7 +3,7 @@
 # File edited to suit by CrazyJ36
 # using method from http://www.hanshq.net/command-line-android.html
 
-# Instructions: this expects $JAVA_HOME to be set and the JDK tools to be in $PATH.
+# Instructions: common java_home in linux: /usr/lib/jvm/.../
 # appname (second argument) should be the same as in ./java/com/crazyj36/name
 
 # adding libs like support libraries seems possible after "javac -cp ${PLATFORM}/android.jar:${PLATFORM}/android-support-v4.jar"
@@ -24,6 +24,7 @@ else
   mpass=$3
 
   jks_dir="$HOME/downloads/keystore.jks"
+  JAVA_HOME="/usr/lib/jvm/java-8-openjdk-i386"
   SDK="${HOME}/development/android/cli-build/aapt-build/sdk"
   BUILD_TOOLS="${SDK}/build-tools"
   PLATFORM="${SDK}/platforms/"
@@ -34,7 +35,7 @@ else
 
   "${BUILD_TOOLS}/aapt" package -f -m -J $workdir/build/gen/ -S $workdir/res \
   -M $workdir/AndroidManifest.xml -I "${PLATFORM}/android.jar"
-  printf "aapt success...\n"
+  printf "aapt ok...\n"
 
   javac -source 1.7 -target 1.7 -bootclasspath "${JAVA_HOME}/jre/lib/rt.jar" \
   -classpath "${PLATFORM}/android.jar" -Xlint:all -d $workdir/build/obj \
@@ -44,14 +45,14 @@ else
     printf "Couldn't build java source files.\n"
     exit
   else
-    printf "javac R.java built...\n"
+    printf "java ok...\n"
 
     "${BUILD_TOOLS}/dx" --dex --output=$workdir/build/apk/classes.dex $workdir/build/obj/
-    printf "classes.dex built...\n"
+    printf "dex done\n"
 
     "${BUILD_TOOLS}/aapt" package -f -M $workdir/AndroidManifest.xml -S $workdir/res/ -I "${PLATFORM}/android.jar" \
     -F $workdir/build/$appname-packaged.apk $workdir/build/apk/
-    printf "aapt success...\n"
+    printf "apk built...\n"
 
     ## apksigner should be available directly in newer sdks. If you have it use here "${BUILD_TOOLS}/apksigner" instead of "apksigner"
     apksigner sign --v1-signing-enabled true --v2-signing-enabled false \
@@ -64,7 +65,7 @@ else
     printf "apk signed...\n"
 
     "${BUILD_TOOLS}/zipalign" -f 4 $workdir/build/$appname-signed.apk $workdir/build/$appname.apk
-    printf "zipalign success...\n"
+    printf "zipaligned apk...\n"
 
     "${PLATFORM_TOOLS}/adb" install -r $workdir/build/$appname.apk
     printf "apk installed...\n"
