@@ -15,7 +15,6 @@ repos=(
  html
  java
  js
- kotlin
  linux-scripts
  python
  windows-scripts
