@@ -24,7 +24,7 @@ else
   mpass=$3
 
   jks_dir="$HOME/downloads/keystore.jks"
-  JAVA_HOME="/usr/lib/jvm/java-8-openjdk-i386"
+  JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
   SDK="${HOME}/development/android/cli-build/aapt-build/sdk"
   BUILD_TOOLS="${SDK}/build-tools"
   PLATFORM="${SDK}/platforms/"
@@ -54,8 +54,7 @@ else
     -F $workdir/build/$appname-packaged.apk $workdir/build/apk/
     printf "apk built...\n"
 
-    ## apksigner should be available directly in newer sdks. If you have it use here "${BUILD_TOOLS}/apksigner" instead of "apksigner"
-    apksigner sign --v1-signing-enabled true --v2-signing-enabled false \
+    "${BUILD_TOOLS}/apksigner" sign --v1-signing-enabled true --v2-signing-enabled false \
     --ks $jks_dir \
     --ks-key-alias CrazyJ36DevKey --ks-pass pass:$mpass --key-pass pass:$mpass \
     --out $workdir/build/$appname-signed.apk $workdir/build/$appname-packaged.apk
