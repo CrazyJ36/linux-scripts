@@ -2,6 +2,10 @@
 
 # fh means: find here
 
+# 'grep -i' makes the results case insensitive.
+# Return matches that are capital or lower regardless
+# of what was requested.
+
 var=$1
-ls -a | grep $var
+ls -a | grep -i $var
 exit
