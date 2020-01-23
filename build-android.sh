@@ -12,9 +12,10 @@
 
 # Ideas: catch any problems before script gets to "success.."
 
-printf "\nRun this program as:\nbuild-android.sh SourceDir AppName KeyStorePass\n"
+printf "This expects to be run in A directory that has Android source of: AndroidManifest.xml res/ java/\n"
+printf "\nRun this program as:\nbuild-android.sh SourceDir AppName KeyStorePass DeviceSerial\n"
 
-if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ]; then
+if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ] || [ -z "$4" ]; then
   printf "Wrong number of arguments.\n"
   exit
 else
@@ -22,6 +23,7 @@ else
   workdir=$1
   appname=$2
   mpass=$3
+  device=$4
 
   jks_dir="$HOME/downloads/keystore.jks"
   JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
@@ -66,10 +68,11 @@ else
     "${BUILD_TOOLS}/zipalign" -f 4 $workdir/build/$appname-signed.apk $workdir/build/$appname.apk
     printf "zipaligned apk...\n"
 
-    "${PLATFORM_TOOLS}/adb" install -r $workdir/build/$appname.apk
+    # adb -s $device uses your device serial number. You can set this to variable in ~/.profile.
+    "${PLATFORM_TOOLS}/adb" -s $device install -r $workdir/build/$appname.apk
     printf "apk installed...\n"
 
-    "${PLATFORM_TOOLS}/adb"  shell am start -n com.crazyj36.$appname/.MainActivity
+    "${PLATFORM_TOOLS}/adb"  -s $device shell am start -n com.crazyj36.$appname/.MainActivity
     printf "app started on device\n"
 
     printf "cleaning build directories\n"
