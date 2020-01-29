@@ -57,17 +57,14 @@ else
     -F ./build/$appname-packaged.apk ./build/apk/
     printf "apk built...\n"
 
+    "${BUILD_TOOLS}/zipalign" -f 4 ./build/$appname-packaged.apk ./build/$appname-aligned.apk
+    printf "zipaligned apk...\n"
+
     "${BUILD_TOOLS}/apksigner" sign --v1-signing-enabled true --v2-signing-enabled false \
     --ks $jks_dir \
     --ks-key-alias CrazyJ36DevKey --ks-pass pass:$mpass --key-pass pass:$mpass \
-    --out ./build/$appname-signed.apk ./build/$appname-packaged.apk
-
-    #jarsigner -keystore $HOME/development/android/devkey/keystore.jks \
-    #-storepass $mpass -keypass $mpass ./build/$appname.aligned.apk CrazyJ36DevKey
+    --out ./build/$appname.apk ./build/$appname-aligned.apk
     printf "apk signed...\n"
-
-    "${BUILD_TOOLS}/zipalign" -f 4 ./build/$appname-signed.apk ./build/$appname.apk
-    printf "zipaligned apk...\n"
 
     # adb -s $device uses your device serial number. You can set this to variable in ~/.profile.
     "${PLATFORM_TOOLS}/adb" -s $device install -r ./build/$appname.apk
@@ -77,7 +74,7 @@ else
     printf "app started on device\n"
 
     printf "cleaning build directories\n"
-    rm ./build/$appname-packaged.apk ./build/$appname-signed.apk
+    rm ./build/$appname-packaged.apk ./build/$appname-aligned.apk
     rm -rf ./build/apk/ ./build/obj/ ./build/gen/
 
     printf "done\n"
