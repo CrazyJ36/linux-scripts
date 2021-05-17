@@ -11,6 +11,7 @@ repos=(
  android
  assembly
  c
+ crazyj36.rocks
  docs
  html
  java
