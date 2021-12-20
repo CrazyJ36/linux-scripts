@@ -2,10 +2,10 @@
 
 # fh means: find here
 
-# 'grep -i' makes the results case insensitive.
-# Return matches that are capital or lower regardless
-# of what was requested.
+# For searching all subdirectories as well,
+# use(doesn't work in script due to vararg):
+# $ find . -print | grep -i searchterm
 
-var=$1
-ls -a | grep -i $var
+ls -a | grep -i $1
+
 exit
