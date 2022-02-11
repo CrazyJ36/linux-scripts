@@ -14,11 +14,18 @@
 # You should set the directory where your android development keystore file is.
 # TODO: catch any problems before any command finishes.
 
-printf "This expects to be run in A directory that has Android source of: AndroidManifest.xml res/ java/\n"
-printf "\nRun this program as:\nbuild-android.sh AppName KeyStorePass DeviceSerial\n"
+function deleteDirs {
+rm -rf ./build/gen/ ./build/obj/ ./build/apk/
+}
+
+printf "\nRun this program as:\n$ build-android.sh app_name dev_keystore_pass device_serial\n\n"
+printf "It expects to be run in A directory that contains:\n"
+printf "AndroidManifest.xml res/ java/...\n"
+printf "with A com/dev/appname/MainActivity.java in 'java/'\n"
+printf "and an adb device connected.\n\n"
 
 if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ]; then
-  printf "Wrong number of arguments.\n"
+  printf "wrong execution arguments.\n"
   exit
 else
 
@@ -34,51 +41,82 @@ else
   PLATFORM_TOOLS="${SDK}/platform-tools"
 
   mkdir -p ./build/gen ./build/obj ./build/apk
-  printf "\nbuild directories created...\n"
+  printf "created build directories...\n"
 
   "${BUILD_TOOLS}/aapt" package -f -m -J ./build/gen/ -S ./res \
   -M ./AndroidManifest.xml -I "${PLATFORM}/android.jar"
-  printf "aapt ok...\n"
+  if [ ! $? = 0 ]; then
+    printf "\naapt error, cleaning...\n"
+    deleteDirs
+    exit
+  else
+    printf "manifest and res ok...\n"
+  fi
 
   javac -source 1.8 -target 1.8 -bootclasspath "${JAVA_HOME}/jre/lib/rt.jar" \
   -classpath "${PLATFORM}/android.jar" -Xlint:all -d ./build/obj \
   ./build/gen/com/crazyj36/$appname/R.java ./java/com/crazyj36/$appname/*.java
-
   if [ ! $? == 0 ]; then
-    printf "Couldn't build java source files.\n"
+    printf "\njava error, cleaning...\n"
+    deleteDirs
     exit
   else
     printf "java ok...\n"
+  fi
 
-    "${BUILD_TOOLS}/dx" --dex --output=./build/apk/classes.dex ./build/obj/
-    printf "dex done\n"
+  "${BUILD_TOOLS}/dx" --dex --output=./build/apk/classes.dex ./build/obj/
 
-    "${BUILD_TOOLS}/aapt" package -f -M ./AndroidManifest.xml -S ./res/ -I "${PLATFORM}/android.jar" \
-    -F ./build/$appname-packaged.apk ./build/apk/
-    printf "apk built...\n"
+  "${BUILD_TOOLS}/aapt" package -f -M ./AndroidManifest.xml -S ./res/ -I "${PLATFORM}/android.jar" \
+  -F ./build/$appname-packaged.apk ./build/apk/
+  if [ ! $? == 0 ]; then
+    printf "\naapt error, cleaning...\n"
+    rm ./build/$appname-packaged.apk
+    deleteDirs
+    exit
+  fi
 
-    "${BUILD_TOOLS}/zipalign" -f 4 ./build/$appname-packaged.apk ./build/$appname-aligned.apk
-    printf "zipaligned apk...\n"
+  "${BUILD_TOOLS}/zipalign" -f 4 ./build/$appname-packaged.apk ./build/$appname-aligned.apk
+  if [ ! $? == 0 ]; then
+    printf "zipalign error, cleaning...\n"
+    rm .build/$appname-packaged.apk ./build/$appname-aligned.apk
+    deleteDirs
+    exit
+  fi
 
-    "${BUILD_TOOLS}/apksigner" sign --v1-signing-enabled true --v2-signing-enabled false \
-    --ks $jks_dir \
-    --ks-key-alias CrazyJ36DevKey --ks-pass pass:$mpass --key-pass pass:$mpass \
-    --out ./build/$appname.apk ./build/$appname-aligned.apk
-    printf "apk signed...\n"
+  "${BUILD_TOOLS}/apksigner" sign --v1-signing-enabled true --v2-signing-enabled false \
+  --ks $jks_dir \
+  --ks-key-alias CrazyJ36DevKey --ks-pass pass:$mpass --key-pass pass:$mpass \
+  --out ./build/$appname.apk ./build/$appname-aligned.apk
+  if [ ! $? == 0 ]; then
+    printf "apksigner error, cleaning...\n"
+    rm ./build/$appname-packaged.apk ./build/$appname.apk ./build/$appname-aligned.apk
+    deleteDirs
+    exit
+  else
+    printf "new apk ready at ./build/...\n"
+  fi
 
-    # adb -s $device uses your device serial number. You can set this to variable in ~/.profile.
-    "${PLATFORM_TOOLS}/adb" -s $device install -r ./build/$appname.apk
-    printf "apk installed...\n"
-
-    "${PLATFORM_TOOLS}/adb"  -s $device shell am start -n com.crazyj36.$appname/.MainActivity
-    printf "app started on device\n"
-
-    printf "cleaning build directories\n"
+  # adb -s $device uses your device serial number. You can set this to variable in ~/.profile.
+  "${PLATFORM_TOOLS}/adb" -s $device install -r ./build/$appname.apk
+  if [ ! $? == 0 ]; then
+    printf "apk not installed. connect a device and try again, or install from build directory manually. cleaning...\n"
     rm ./build/$appname-packaged.apk ./build/$appname-aligned.apk
-    rm -rf ./build/apk/ ./build/obj/ ./build/gen/
+    deleteDirs
+    exit
+  fi
 
-    printf "done\n"
+  "${PLATFORM_TOOLS}/adb"  -s $device shell am start -n com.crazyj36.$appname/.MainActivity
+  if [ ! $? == 0 ]; then
+    printf "'$ adb shell am start' failed, cleaning...\n"
+    rm ./build/$appname-packaged.apk ./build/$appname-aligned.apk
+    deleteDirs
+    exit
+  else
+    rm ./build/$appname-packaged.apk ./build/$appname-aligned.apk
+    deleteDirs
+    printf "started MainActivity.java on connected device, cleaned files.\n"
+
   fi
 
 fi
-
+exit
