@@ -17,6 +17,7 @@ repos=(
  java
  js
  linux-scripts
+ paid-apps
  python
  windows-scripts
  )
