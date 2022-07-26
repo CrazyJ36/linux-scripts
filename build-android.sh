@@ -58,7 +58,7 @@ else
   fi
 
   javac -source 1.8 -target 1.8 -bootclasspath "${JAVA_HOME}/jre/lib/rt.jar" \
-  -classpath "${PLATFORM}/android.jar" -Xlint:all -d ./build/obj \
+  -classpath "${PLATFORM}android.jar" -Xlint:all -d ./build/obj \
   ./build/gen/com/crazyj36/$appname/R.java ./java/com/crazyj36/$appname/*.java
   if [ ! $? == 0 ]; then
     printf "\njava error, cleaning...\n"
