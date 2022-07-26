@@ -7,6 +7,10 @@
 # this should of course be set.
 # appname argument should be the same as in ./java/com/crazyj36/name
 
+# Downloading build-tools, platform-tools and platforms:
+# $ wget https://dl.google.com/android/repository/platform-R_r02.zip
+# tool names can be found in https://dl.google.com/android/repository/repository-12.xml
+
 # adding libs like support libraries seems possible after "javac -cp ${PLATFORM}/android.jar:${PLATFORM}/android-support-v4.jar"
 # and "aapt -j ${PATH}/to/android-support-v4.jar"
 # But this caused crash in app as 'NoClassDefError' for this lib. My error, probably didn't have the lib downloaded.
