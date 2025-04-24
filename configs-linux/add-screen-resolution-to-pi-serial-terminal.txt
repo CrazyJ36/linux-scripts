@@ -1,0 +1,3 @@
+# add this to ~/.profile
+export LINES=50
+export COLUMNS=160
